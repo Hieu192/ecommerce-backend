@@ -54,6 +54,8 @@ public class Product {
     @Column(name = "num_ratings")
     private int numRatings;
 
+    @Column(name = "num_reviews")
+    private int numReviews;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -63,7 +65,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long id, String title, String description, int price, int discountedPrice, int discountPersent, int quantity, String brand, String color, Set<Size> sizes, String imageUrl, List<Rating> ratings, List<Review> reviews, int numRatings, Category category, LocalDateTime localDateTime) {
+    public Product(Long id, String title, String description, int price, int discountedPrice, int discountPersent, int quantity, String brand, String color, Set<Size> sizes, String imageUrl, List<Rating> ratings, List<Review> reviews, int numRatings, int numReviews, Category category, LocalDateTime localDateTime) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -78,8 +80,21 @@ public class Product {
         this.ratings = ratings;
         this.reviews = reviews;
         this.numRatings = numRatings;
+//        this.numReviews = numReviews;
         this.category = category;
         this.localDateTime = localDateTime;
+    }
+
+    public void setDiscountPersent(int discountPersent) {
+        this.discountPersent = discountPersent;
+    }
+
+    public int getNumReviews() {
+        return numReviews;
+    }
+
+    public void setNumReviews(int numReviews) {
+        this.numReviews = numReviews;
     }
 
     public Long getId() {

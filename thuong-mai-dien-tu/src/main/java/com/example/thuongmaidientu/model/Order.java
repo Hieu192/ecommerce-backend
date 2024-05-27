@@ -13,8 +13,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "order_id")
-    private String orderId;
+//    @Column(name = "order_id")
+//    private String orderId;
 
     @ManyToOne
     private User user;
@@ -23,7 +23,7 @@ public class Order {
     private List<OrderItem> orderItems = new ArrayList<>();
 
     private LocalDateTime orderDate;
-    private LocalDateTime deliveryDate;
+//    private LocalDateTime deliveryDate;
 
     @OneToOne
     private Address shippingAddress;
@@ -40,13 +40,13 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long id, String orderId, User user, List<OrderItem> orderItems, LocalDateTime orderDate, LocalDateTime deliveryDate, Address shippingAddress, PaymentDetails paymentDetails, double totalPrice, Integer totalDiscountedPrice, Integer discounte, String orderStatus, int totalItem, LocalDateTime localDateTime) {
+    public Order(Long id, User user, List<OrderItem> orderItems, LocalDateTime orderDate,  Address shippingAddress,PaymentDetails paymentDetails, double totalPrice, Integer totalDiscountedPrice, Integer discounte, String orderStatus, int totalItem, LocalDateTime localDateTime) {
         this.id = id;
-        this.orderId = orderId;
+//        this.orderId = orderId;
         this.user = user;
         this.orderItems = orderItems;
         this.orderDate = orderDate;
-        this.deliveryDate = deliveryDate;
+//        this.deliveryDate = deliveryDate;
         this.shippingAddress = shippingAddress;
         this.paymentDetails = paymentDetails;
         this.totalPrice = totalPrice;
@@ -65,13 +65,13 @@ public class Order {
         this.id = id;
     }
 
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
+//    public String getOrderId() {
+//        return orderId;
+//    }
+//
+//    public void setOrderId(String orderId) {
+//        this.orderId = orderId;
+//    }
 
     public User getUser() {
         return user;
@@ -97,13 +97,13 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public LocalDateTime getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(LocalDateTime deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
+//    public LocalDateTime getDeliveryDate() {
+//        return deliveryDate;
+//    }
+//
+//    public void setDeliveryDate(LocalDateTime deliveryDate) {
+//        this.deliveryDate = deliveryDate;
+//    }
 
     public Address getShippingAddress() {
         return shippingAddress;

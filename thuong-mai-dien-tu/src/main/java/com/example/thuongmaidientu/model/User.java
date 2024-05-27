@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,10 +24,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Address> address =new ArrayList<>();
 
-    @Embedded
-    @ElementCollection
-    @CollectionTable(name="payment_information", joinColumns = @JoinColumn(name = "user_id"))
-    private List<PaymentInformation> paymentInformations = new ArrayList<>();
+//    @Embedded
+//    @ElementCollection
+//    @CollectionTable(name="payment_information", joinColumns = @JoinColumn(name = "user_id"))
+//    private List<PaymentInformation> paymentInformations = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
@@ -42,7 +43,7 @@ public class User {
 
     }
 
-    public User(Long id, String firstName, String lastName, String password, String email, String role, String phone, List<Address> address, List<PaymentInformation> paymentInformations, List<Rating> ratings, List<Review> reviews, LocalDateTime localDateTime) {
+    public User(Long id, String firstName, String lastName, String password, String email, String role, String phone, List<Address> address,  List<Rating> ratings, List<Review> reviews, LocalDateTime localDateTime) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,7 +52,6 @@ public class User {
         this.role = role;
         this.phone = phone;
         this.address = address;
-        this.paymentInformations = paymentInformations;
         this.ratings = ratings;
         this.reviews = reviews;
         this.localDateTime = localDateTime;
@@ -121,13 +121,6 @@ public class User {
         this.address = address;
     }
 
-    public List<PaymentInformation> getPaymentInformations() {
-        return paymentInformations;
-    }
-
-    public void setPaymentInformations(List<PaymentInformation> paymentInformations) {
-        this.paymentInformations = paymentInformations;
-    }
 
     public List<Rating> getRatings() {
         return ratings;

@@ -7,6 +7,11 @@ public class ApiResponse {
     public ApiResponse() {
     }
 
+    public ApiResponse(String message, Boolean status) {
+        this.message = message;
+        Status = status;
+    }
+
     public String getMessage() {
         return message;
     }

@@ -48,7 +48,7 @@ public class AuthController {
         User isEmailExist = userRepository.findByEmail(email);
 
         if(isEmailExist!=null) {
-            throw new UserException("Email is Already Used With Another Account");
+            throw new UserException("email đã được sử dụng, vui lòng sử dụng email khác");
         }
 
         User createdUser = new User();

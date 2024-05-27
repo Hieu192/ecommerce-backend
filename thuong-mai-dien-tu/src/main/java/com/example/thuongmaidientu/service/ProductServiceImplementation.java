@@ -42,7 +42,7 @@ public class ProductServiceImplementation implements ProductService{
             topLevel = categoryRepository.save(topLavelCategory);
         }
         Category secondLevel = categoryRepository.findByNameAndParant(req.getSecondLavelCategory(), topLevel.getName());
-        if (secondLevel== null) {
+        if (secondLevel == null) {
             Category secondLavelCategory = new Category();
             secondLavelCategory.setName(req.getSecondLavelCategory());
             secondLavelCategory.setParentCategory(topLevel);
@@ -51,7 +51,7 @@ public class ProductServiceImplementation implements ProductService{
             secondLevel = categoryRepository.save(secondLavelCategory);
         }
         Category thirdLevel = categoryRepository.findByNameAndParant(req.getThirdLavelCategory(), secondLevel.getName());
-        if (thirdLevel== null) {
+        if (thirdLevel == null) {
             Category thirdLavelCategory = new Category();
             thirdLavelCategory.setName(req.getThirdLavelCategory());
             thirdLavelCategory.setParentCategory(secondLevel);
@@ -106,7 +106,8 @@ public class ProductServiceImplementation implements ProductService{
 
     @Override
     public List<Product> findProductByCategory(String category) {
-        return null;
+        List<Product> products = productRepository.fillterProductsByCategory(category);
+        return products;
     }
 
     @Override
@@ -141,5 +142,20 @@ public class ProductServiceImplementation implements ProductService{
         List<Product> opt = productRepository.findAll();
 
         return opt;
+    }
+
+    @Override
+    public Page<Product> getAllProduct2(Integer pageNumber, Integer pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+        List<Product> products = productRepository.findAll();
+
+
+        int startIndex = (int) pageable.getOffset();
+        int endIndex = (int) Math.min(startIndex + pageable.getPageSize(), products.size());
+
+        List<Product> pageContent = products.subList(startIndex, endIndex);
+        Page<Product> filteredProduct = new PageImpl<>(pageContent, pageable, products.size());
+        return filteredProduct;
     }
 }

@@ -30,6 +30,13 @@ public class AdminOrderController {
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 
+    @PutMapping("/{orderId}/deliver")
+    public ResponseEntity<Order> DeliveredOrderHandler(@PathVariable Long orderId, @RequestHeader("Authorization") String jwt) throws OrderException {
+        Order order = orderService.deliveredOrder(orderId);
+
+        return new ResponseEntity<>(order, HttpStatus.OK);
+    }
+
     @PutMapping("/{orderId}/ship")
     public ResponseEntity<Order> ShippedOrderHandler(@PathVariable Long orderId, @RequestHeader("Authorization") String jwt) throws OrderException {
         Order order = orderService.shippedOrder(orderId);

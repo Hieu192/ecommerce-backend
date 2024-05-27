@@ -26,10 +26,11 @@ public class RatingServiceImplementation implements RatingService{
     public Rating createRating(RatingRequest req, User user) throws ProductException {
         Product product = productService.findProductById(req.getProductId());
 
+        product.setNumRatings(product.getNumRatings() + 1);
         Rating rating = new Rating();
         rating.setProduct(product);
         rating.setUser(user);
-        rating.setRating(req.rating);
+        rating.setRating(req.getRating());
         rating.setLocalDateTime(LocalDateTime.now());
         return ratingRepository.save(rating);
     }

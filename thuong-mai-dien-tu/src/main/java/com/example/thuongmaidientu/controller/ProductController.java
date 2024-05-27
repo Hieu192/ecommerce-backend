@@ -27,6 +27,30 @@ public class ProductController {
         return new ResponseEntity<>(res, HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("/products/allpage")
+    public ResponseEntity<Page<Product>> findAllProductHandler( @RequestParam Integer pageNumber, @RequestParam Integer pageSize) {
+        Page<Product> res = productService.getAllProduct2(pageNumber, pageSize);
+
+        System.out.println("complete product");
+        return new ResponseEntity<>(res, HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/products/category")
+    public ResponseEntity<List<Product>> findProductByCategory(@RequestParam String category) {
+        List<Product> res = productService.findProductByCategory(category);
+
+        System.out.println("complete product");
+        return new ResponseEntity<>(res, HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/products/all")
+    public ResponseEntity<List<Product>> findAllProduct() {
+        List<Product> res = productService.findAllProduct();
+
+        System.out.println("get all product");
+        return new ResponseEntity<>(res, HttpStatus.ACCEPTED);
+    }
+
     @GetMapping("/products/id/{productId}")
     public ResponseEntity<Product> findProductByIdHandler(@PathVariable Long productId) throws ProductException{
         Product product = productService.findProductById(productId);

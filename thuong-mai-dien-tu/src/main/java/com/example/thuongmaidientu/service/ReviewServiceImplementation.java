@@ -28,13 +28,12 @@ public class ReviewServiceImplementation implements ReviewService {
     public Review createReview(ReviewRequest req, User user) throws ProductException {
         Product product = productService.findProductById(req.getProductId());
 
+        product.setNumReviews(product.getNumReviews() + 1);
         Review review = new Review();
         review.setUser(user);
         review.setProduct(product);
         review.setReview(req.getReview());
         review.setLocalDateTime(LocalDateTime.now());
-
-
         return reviewRepository.save(review);
     }
 
